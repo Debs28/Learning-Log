@@ -1,0 +1,29 @@
+{% extends "learning_logs/base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Entry</title>
+    {% load bootstrap3 %}
+</head>
+<body>
+    {% block reader %}
+        <h1>
+            <a href="{% url 'topic' topic.id %}">{{ topic }}</a>
+        </h1>
+    {% endblock reader %}
+    
+    {% block content %}
+        <h3>Adicione uma nova entrada:</h3>
+        <form action="{% url 'new_entry' topic.id %}" method="post">
+            {%  csrf_token %}
+            {% bootstrap_form form%}
+            
+            {% buttons %}
+                <button name="submit" class="btn btn-primary">Adicionar</button>
+            {% endbuttons %}
+        </form>
+    {% endblock content %}
+</body>
+</html>

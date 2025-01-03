@@ -1,0 +1,37 @@
+{% extends "learning_logs/base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    {% load bootstrap3 %}
+</head>
+<body>
+    {% block reader%}
+        <h1>Criar Conta</h1>
+    {% endblock reader%}
+    {% block content %}
+    {% if form.errors %}
+        <p style="color: red;" class="aviso-erro">
+        * O nome de usuário não deve conter caracteres especiais.
+        </p>
+        <p style="color: red;" class="aviso-erro">
+            * A senha deve conter 8 caracteres, contendo letras, números e caracteres especiais e não pode conter o nome de usuário.
+        </p>
+        <p style="color: red;" class="aviso-erro">
+            * A senha devem ser iguais.
+        </p>
+    {% endif %}
+    <form action="{% url 'register' %}" method="post" class="ul-none">
+            {% csrf_token %}
+            {% bootstrap_form form%}
+
+            {% buttons %}
+            <button name="submit" class="btn btn-primary">Registrar</button>
+            {% endbuttons %}
+            <input type="hidden" name="next" value="{% url 'index' %}"/>
+        </form>
+    {% endblock content %}
+</body>
+</html>

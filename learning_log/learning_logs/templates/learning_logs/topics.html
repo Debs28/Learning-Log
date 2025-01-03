@@ -1,0 +1,33 @@
+{% extends "learning_logs/base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Topics</title>
+</head>
+<body>
+    {% block reader %}
+        <h1>Tópicos: </h1>
+    {% endblock reader %}
+
+    {% block content %}
+    
+        <ul class="list-group">
+            {% for topic in topics %}
+                <li class="list-group-item">
+                    <h3>
+                        <a href="{% url 'topic' topic.id %}">{{topic}}</a>
+                    </h3>
+                </li>
+            {% empty %}
+                <li>Não há tópicos adicionados.</li>
+            {% endfor %}
+        </ul>
+        <h3>
+            <a href="{% url 'new_topic' %}">Adicionar Novos Tópicos</a>
+        </h3>
+    
+    {% endblock content %}
+</body>
+</html>

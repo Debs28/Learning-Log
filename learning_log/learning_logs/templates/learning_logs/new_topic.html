@@ -1,0 +1,26 @@
+{% extends "learning_logs/base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Topic</title>
+    {% load bootstrap3 %}
+</head>
+<body>
+    {% block reader%}
+        <h2>Adicione um novo tópico:</h2>
+    {% endblock reader%}
+    
+    {% block content %}
+        <form action="{% url 'new_topic' %}" method="post" class="form">
+            {%  csrf_token %}
+            {% bootstrap_form form%}
+
+            {% buttons %}
+            <button name="Submit" class="btn btn-primary">Adicionar</button>
+            {% endbuttons %}
+        </form>
+    {% endblock content%}
+</body>
+</html>

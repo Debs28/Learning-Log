@@ -1,0 +1,27 @@
+{% extends "learning_logs/base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    {% load bootstrap3%}
+</head>
+<body>
+    {% block reader %}
+        <h2>Entre com sua conta de login.</h2>
+    {% endblock reader %}
+    {% block content %}
+        <form action="{% url 'login' %}" method="post" class="form">
+            {% csrf_token %}
+            {% bootstrap_form form%}
+            
+            {% buttons %}
+                <button name="submit" class="btn btn-primary">Entrar</button>
+            {% endbuttons %}
+            <input type="hidden" name="next" value="{% url 'index' %}"/>
+        </form>
+
+    {% endblock content %}
+</body>
+</html>
